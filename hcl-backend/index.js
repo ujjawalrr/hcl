@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { connectMongoDB } = require("./connection");
+const transactionRoutes = require("./routes/transactionRoutes")
 const dotenv = require("dotenv")
 dotenv.config()
 const app = express();
@@ -17,6 +18,8 @@ connectMongoDB(process.env.MONGO).
 
 //middleware
 app.use(express.json());
+
+app.use('/api/transaction', transactionRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server started at ${PORT}`);
