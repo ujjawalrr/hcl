@@ -14,8 +14,6 @@ const userAccountSchema = mongoose.Schema({
     },
     BIC: {
         type: String,
-        unique: true,
-        index: true,
         required: true
     },
     balance: {
