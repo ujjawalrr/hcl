@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { connectMongoDB } = require("./connection");
 const transactionRoutes = require("./routes/transactionRoutes")
+const bankRoutes = require("./routes/bankRoutes")
 const dotenv = require("dotenv")
 const authRoutes = require("./routes/auth");
 dotenv.config()
@@ -25,5 +26,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/transaction', transactionRoutes)
+app.use('/api/bank', bankRoutes)
 
 app.use("/api/auth", authRoutes);

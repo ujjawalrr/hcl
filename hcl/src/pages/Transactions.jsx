@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import useUserStore from '../store/useUserStore';
 import { Table } from 'antd';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 export const Transactions = () => {
   const { user } = useUserStore();
+  const navigate = useNavigate()
 
   const [transactions, setTransactions] = useState([]);
 
@@ -73,9 +75,12 @@ export const Transactions = () => {
 
   return (
     <div>
-      <p className='text-center text-3xl text-gray-700 font-semibold my-5'>Transactions</p>
+      <div className='text-center text-3xl text-gray-700 font-semibold my-5 flex flex-col'>
+        <span>Transactions</span>
+        <button onClick={()=> navigate('/transfer')}>New Transaction</button>
+      </div>
       <div>
-      <Table dataSource={transactions} columns={columns} />
+        <Table dataSource={transactions} columns={columns} />
       </div>
     </div>
   )

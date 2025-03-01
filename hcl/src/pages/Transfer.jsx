@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../store/useUserStore';
+import axios from 'axios'
 
 const Transfer = () => {
     const navigate = useNavigate();
     const { user } = useUserStore();
+    console.log(user)
     const [formData, setFormData] = useState({
         fromAccountNumber: user?.accountNumber || '',
         toAccountNumber: '',
@@ -69,6 +71,22 @@ const Transfer = () => {
             setError(err.message);
         }
     };
+
+    const [banks, setBanks] = useState([]);
+
+  const fetchBanks = async () => {
+    try {
+      const banksData = await axios.get(`http://www.localhost:3000/api/bank/getBanks`)
+      setBanks(banksData.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchBanks();
+  }, [])
+  console.log(banks)
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

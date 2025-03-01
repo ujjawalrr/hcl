@@ -9,9 +9,7 @@ const userAccountSchema = mongoose.Schema({
     accountNumber: {
         type: Number,
         required: true,
-        unique: true,
-        min: [1000000000, 'Account number must be at least 10 digits']
-    },
+        unique: true,    },
     BIC: {
         type: String,
         required: true
