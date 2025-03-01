@@ -7,7 +7,7 @@ const authRoutes = require("./routes/auth");
 dotenv.config()
 const app = express();
 const PORT = 3000;
-
+const cors = require('cors')
 
 connectMongoDB(process.env.MONGO)
     .then(() => {
@@ -22,6 +22,7 @@ connectMongoDB(process.env.MONGO)
     });
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/transaction', transactionRoutes)
 

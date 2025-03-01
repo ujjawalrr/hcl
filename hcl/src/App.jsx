@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import { Home } from './pages/Home'
 import { PrivateRoute } from './components/PrivateRoute'
-import { Profile } from './pages/Profile'
+import { Transactions } from './pages/Transactions'
 
 function App() {
 
@@ -10,9 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/profile' element={
+        <Route path='/transactions' element={
           <PrivateRoute>
-            <Profile />
+            <Transactions />
           </PrivateRoute>
         } />
       </Routes>
