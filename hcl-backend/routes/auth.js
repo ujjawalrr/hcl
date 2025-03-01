@@ -49,4 +49,30 @@ router.post("/register", async (req, res) => {
     }
 });
 
+
+router.post("/login", async (req, res) => {
+    const { accountNumber, password } = req.body;
+    
+    try {
+        const user = await userAccount.findOne({ accountNumber });
+        
+        if (!user) {
+            return res.status(401).json({ message: "Invalid account number or password" });
+        }
+
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        
+        if (!isValidPassword) {
+            return res.status(401).json({ message: "Invalid account number or password" });
+        }
+
+        const userResponse = user.toObject();
+        delete userResponse.password;
+
+        res.json(userResponse);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 module.exports = router;

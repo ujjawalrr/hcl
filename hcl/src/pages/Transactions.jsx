@@ -10,14 +10,12 @@ export const Transactions = () => {
 
   const fetchTransactions = async () => {
     try {
-      const transactionsData = await axios.get(`http://www.localhost:3000/api/transaction/getTransaction/${7634567892}`)
-      // const transactions = await axios.get(`http://www.localhost:3000/api/transaction/getTransaction/${user.accountNumber}`)
+      const transactionsData = await axios.get(`http://www.localhost:3000/api/transaction/getTransaction/${user.accountNumber}`)
       setTransactions(transactionsData.data)
     } catch (error) {
       console.log(error)
     }
   }
-  console.log(transactions)
 
   useEffect(() => {
     fetchTransactions();

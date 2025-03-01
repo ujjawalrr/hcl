@@ -24,12 +24,10 @@ const router = express.Router();
 
 router.get("/getTransaction/:acNumber", async (req, res) => {
     const accountNumber = req.params.acNumber;
-    console.log(accountNumber)
     try {
         const transactions = await transaction.find({fromAccount: accountNumber})
         return res.status(200).json(transactions)
     } catch (error) {
-        console.log(error)
         return res.status(500).json("Internal Server Error")
     }
 });
