@@ -18,7 +18,6 @@ connectMongoDB(process.env.MONGO).
 //middleware
 app.use(express.json());
 
-
 app.listen(PORT, () => {
     console.log(`Server started at ${PORT}`);
 })
